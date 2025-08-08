@@ -1,0 +1,22 @@
+version: "3.9"
+services:
+  api:
+    build:
+      context: .
+    env_file:
+      - config/test/.env.test
+    environment:
+      - PYTHONPATH=/app
+    volumes:
+      - .:/app
+    ports:
+      - "${PORT}:8000"
+    command: pytest tests/
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: sentiment_dev
+    ports:
+      - "5436:5432"

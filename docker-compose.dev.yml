@@ -1,0 +1,20 @@
+version: "3.9"
+services:
+  api:
+    build:
+      context: .
+    env_file:
+      - config/dev/.env.dev
+    volumes:
+      - .:/app
+    ports:
+      - "${PORT}:8000"
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: sentiment_dev
+    ports:
+      - "5435:5432"
