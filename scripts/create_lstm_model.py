@@ -8,7 +8,7 @@ from tensorflow.keras.layers import Embedding, LSTM, Dense, Dropout
 from tensorflow.keras.utils import to_categorical
 import pickle
 
-df = pd.read_csv("C:/Users/LENOVO/PycharmProjects/movie_reviews_sentiment_analysis/data/cleaned_turkish_movie_sentiment_dataset.csv")
+df = pd.read_csv("your_csv_file_path.csv")
 
 texts = df['comment'].astype(str).tolist()
 labels = df['sentiment'].tolist()
@@ -46,5 +46,6 @@ with open("../data/tokenizer.pkl", "wb") as f:
 
 with open("../data/label_encoder.pkl", "wb") as f:
     pickle.dump(label_encoder, f)
+
 
 
